@@ -6,7 +6,7 @@ export const LayoutContainer = styled.div`
   height: calc(100vh - 10rem) ;
   margin: 5rem auto;
   padding: 2.5rem;
-  border: 8px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
 
