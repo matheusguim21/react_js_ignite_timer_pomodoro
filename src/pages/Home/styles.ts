@@ -125,14 +125,13 @@ export const  MinutesAmountInput = styled(BaseInput)`
 `
 
 
-export const PlayButtton = styled.button`
+export const BaseCountdownButton = styled.button`
 
   display: flex;
   justify-content: center;
   align-items: center;
 
 
-  background-color: ${props => props.theme["green-500"]};
   color: ${props=> props.theme["gray-100"]};
 
   width: 100%;
@@ -141,6 +140,20 @@ export const PlayButtton = styled.button`
   border:0;
   border-radius:8px;
   cursor: pointer;
+
+
+
+`
+
+export const StartCountdownButton = styled(BaseCountdownButton)`
+
+  
+
+
+  background-color: ${props => props.theme["green-500"]};
+
+
+  
 
   &:hover{
     background-color: ${props => props.theme["green-700"]};
@@ -152,6 +165,25 @@ export const PlayButtton = styled.button`
 
   &:not(disabled):hover {
     background-color: ${props => props.theme["green-700"]};
+  }
+
+
+`
+
+export const StopCountdownButton = styled(BaseCountdownButton)`
+
+  
+
+  background-color: ${props => props.theme["red-500"]};
+ 
+  
+  &:disabled{
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:not(disabled):hover {
+    background-color: ${props => props.theme["red-700"]};
   }
 
 
