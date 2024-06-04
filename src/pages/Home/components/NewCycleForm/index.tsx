@@ -31,7 +31,6 @@ export function NewCycleForm() {
       <MinutesAmountInput
         type="number"
         id="minutesAmount"
-        step={5}
         min={1}
         max={60}
         placeholder="00"
