@@ -1,14 +1,31 @@
+import { Trash } from '@phosphor-icons/react'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useContext } from 'react'
 import { CyclesContext } from '../../contexts/CyclesContext'
-import { HistoryContainer, HistoryList, Status } from './styles'
+import { ClearHistoryContainer, HistoryContainer, HistoryList, Status } from './styles'
 
 export function History() {
-  const { cycles } = useContext(CyclesContext)
+  const { cycles, clearHistory } = useContext(CyclesContext)
+
+  
+  function handleClearHistory(){
+    clearHistory()
+    
+  }
+  
+
   return (
     <HistoryContainer>
-      <h1>Meu Histórico</h1>
+      <div>
+        <h1>Meu Histórico</h1>
+        <ClearHistoryContainer
+        onClick={handleClearHistory}
+        >
+          <span>Limpar Histórico</span>
+          <Trash size={20}/>
+        </ClearHistoryContainer>
+      </div>
 
       <HistoryList>
         <table>
@@ -27,7 +44,7 @@ export function History() {
                   ${cycle.minutesAmount <= 1 ? 'minuto' : 'minutos'}`}
                 </td>
                 <td>
-                  {formatDistanceToNow(cycle.startDate, {
+                  {formatDistanceToNow(new Date(cycle.startDate), {
                     addSuffix: true,
                     locale: ptBR,
                   })}
@@ -35,7 +52,7 @@ export function History() {
                 <td>
                   {cycle.finishedDate ? (
                     <Status statusColor="green">Conclúido</Status>
-                  ) : cycle.interruptDate ? (
+                  ) : cycle.interruptedDate ? (
                     <Status statusColor="red">Interrompido</Status>
                   ) : (
                     <Status statusColor="yellow">Em andamento</Status>

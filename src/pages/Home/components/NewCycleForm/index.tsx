@@ -1,11 +1,33 @@
+import { Minus, Plus } from '@phosphor-icons/react'
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { CyclesContext } from '../../../../contexts/CyclesContext'
-import { FormContainer, MinutesAmountInput, TaskInput } from './styles'
+import { FormContainer, IncrementeDecrementeContainer, MinutesAmountInput, TaskInput } from './styles'
 
 export function NewCycleForm() {
   const { activeCycle } = useContext(CyclesContext)
-  const { register } = useFormContext()
+  const { register,getValues, setValue } = useFormContext()
+
+  const handleUpdateMinutesAmountInput = (value:number)=>{
+
+    
+      const currentMinutesAmount = getValues('minutesAmount');
+      console.log(currentMinutesAmount);
+      if(currentMinutesAmount === Number.isNaN){
+        setValue("minutesAmount", 0)
+      }
+      if (currentMinutesAmount < 5 && value === -5) {
+        return;
+      }
+  
+      if (currentMinutesAmount > 55 && value === 5) {
+        return;
+      }
+  
+      setValue('minutesAmount', currentMinutesAmount + value);
+    
+
+  }
 
   return (
     <FormContainer>
@@ -28,15 +50,29 @@ export function NewCycleForm() {
       </datalist>
 
       <label htmlFor="minutesAmount">durante</label>
-      <MinutesAmountInput
-        type="number"
-        id="minutesAmount"
-        min={1}
-        max={60}
-        placeholder="00"
-        disabled={!!activeCycle}
-        {...register('minutesAmount', { valueAsNumber: true })}
-      />
+     <IncrementeDecrementeContainer>
+        <button type='button'
+        onClick={()=> handleUpdateMinutesAmountInput(-5)}
+        
+        >
+          <Minus size={16}/>
+        </button>
+        <MinutesAmountInput
+          type="number"
+          id="minutesAmount"
+          min={5}
+          max={60}
+          placeholder="00"
+          disabled={!!activeCycle}
+          {...register('minutesAmount', { valueAsNumber: true })}
+        />
+        <button
+        type='button'
+        onClick={()=> handleUpdateMinutesAmountInput(5)}
+        >
+          <Plus size={16}/>
+        </button>
+     </IncrementeDecrementeContainer>
 
       <span>minutos.</span>
     </FormContainer>

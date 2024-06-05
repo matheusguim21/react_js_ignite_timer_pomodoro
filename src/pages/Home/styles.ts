@@ -73,6 +73,10 @@ export const StopCountdownButton = styled(BaseCountdownButton)`
   background-color: ${props => props.theme["red-500"]};
  
   
+  &:focus{
+    box-shadow: 0 0 0 0.1rem ${(props) => props.theme.white};
+  }
+
   &:disabled{
     opacity: 0.7;
     cursor: not-allowed;

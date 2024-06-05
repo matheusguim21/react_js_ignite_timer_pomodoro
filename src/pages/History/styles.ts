@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const HistoryContainer = styled.main`
   flex: 1;
   padding: 3.5rem;
-
+  max-height: calc(90vh - 10rem);
   display: flex;
   flex-direction: column;
 
@@ -11,12 +11,71 @@ export const HistoryContainer = styled.main`
     font-size: 1.5rem;
     color: ${(props) => props.theme['gray-100']};
   }
+
+  div{
+    &:first-child{
+      display: flex;
+      justify-content: space-between;
+
+    }
+  }
+
+`;
+
+export const ClearHistoryContainer = styled.button`
+
+  background: transparent;
+  border: 0;
+  color: ${props => props.theme['gray-100']};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  box-shadow: none;
+  &:hover{
+    box-shadow: none;
+    color: ${props => props.theme['red-200']};
+  }
+  &:active{
+    box-shadow: none;
+    color: ${props => props.theme['red-500']};
+  }
+  &:focus-within{
+    box-shadow: none;
+  }
+
 `
 
 export const HistoryList = styled.div`
   overflow: auto;
   flex: 1;
   margin-top: 2rem;
+
+  /* Estilizando a barra de rolagem */
+  &::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme['gray-800']}; /* Cor do fundo da barra de rolagem */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme['gray-600']}; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 3px solid ${(props) => props.theme['gray-800']}; /* Espaço ao redor da barra de rolagem */
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: ${(props) => props.theme['gray-500']}; /* Cor da barra de rolagem ao passar o mouse */
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: ${(props) => props.theme['green-500']}; /* Cor da barra de rolagem ao passar o mouse */
+  }
+
+  
 
   table {
     width: 100%;
@@ -53,20 +112,22 @@ export const HistoryList = styled.div`
         width: 50%;
         padding-left: 1.5rem;
       }
+
       &:last-child {
         padding-right: 1.5rem;
       }
     }
   }
-`
+`;
+
 const STATUS_COLOR = {
   yellow: 'yellow-500',
   red: 'red-500',
   green: 'green-500',
-} as const
+} as const;
 
 interface StatusProps {
-  statusColor: keyof typeof STATUS_COLOR
+  statusColor: keyof typeof STATUS_COLOR;
 }
 
 export const Status = styled.span<StatusProps>`
@@ -76,11 +137,9 @@ export const Status = styled.span<StatusProps>`
 
   &::before {
     content: '';
-
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-
     background: ${(props) => props.theme[STATUS_COLOR[props.statusColor]]};
   }
-`
+`;

@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :focus{
+  :focus:not(.logo-link){
     outline: 0;
     box-shadow: 0 0 0 0.1rem ${(props) => props.theme['green-500']};
   }

@@ -55,8 +55,46 @@ flex: 1;
 `
 
 export const  MinutesAmountInput = styled(BaseInput)`
-
-  width: 4rem;
+  width: 50%;
+  border: 0;
   text-align: center;
 
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin:0
+  }
+
+`
+
+export const IncrementeDecrementeContainer = styled.div`
+
+  width: 5rem;
+  border-bottom: 2px solid ${props => props.theme["gray-500"]};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  button{
+    background: transparent;
+    border:0;
+    color:  ${props => props.theme["gray-100"]};
+    cursor: pointer;
+
+    &:focus{
+      box-shadow: none;
+
+    }
+    &:first-child:hover{
+      color: ${props => props.theme["red-500"]};
+    }
+    &:hover{
+      color: ${props => props.theme["green-500"]};
+    }
+
+
+
+  }
+  
 `

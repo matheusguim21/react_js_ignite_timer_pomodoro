@@ -6,7 +6,7 @@ import { HeaderContainer } from "./styles";
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={IgniteLogo} />
+      <NavLink  to={"/"} className="logo-link"><img src={IgniteLogo} /></NavLink>
       <nav>
         <NavLink to={"/"} title="Timer" >
           <Timer size={24}/>

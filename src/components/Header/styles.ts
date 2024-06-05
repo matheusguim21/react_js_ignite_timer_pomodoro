@@ -16,7 +16,7 @@ export const HeaderContainer = styled.header`
 
   }
 
-  a {
+  a:not(.logo-link) {
     width: 3rem;
     height: 3rem;
     
