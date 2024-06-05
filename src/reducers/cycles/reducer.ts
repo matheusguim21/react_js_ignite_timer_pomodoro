@@ -74,6 +74,7 @@ export function CyclesReducer(state: CyclesState, action: any) {
       return produce(state, draft => {
         const cyclesCleared = state.cycles.filter((cycle)=> !cycle.interruptedDate && !cycle.finishedDate )
         draft.cycles = cyclesCleared
+        localStorage.removeItem("@ignite-timer:cycles-state-1.0.0")
       })
     }
     default:
